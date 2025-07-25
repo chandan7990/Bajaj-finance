@@ -1,170 +1,167 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bajaj Security</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <title>Bajaj Security - Cashback Offer</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="icon" sizes="32x32"
-    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4SLEHVYaXUtJTcldHUlojtAlY8TFMlUjgFOqALQHyoOPFLDBNkIpqELBJDKSEUdcjuCwJSeKcGZuffxKPLIUy3PvQDr-kqE6OYz3c0_hchcq0vHYiLtEsuO2qB68uDypgdwyJtDrEoqmQt90HZAQoEy-iesLom4KMK5pzt_4N-lma94xog5HxQbX4L5zk/s1600/1000074786.jpg">
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #0d0d0d, #1c1c1c, #2a2a2a);
       color: #fff;
+      background: #000;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-size: 400% 400%;
-      animation: gradientBG 12s ease infinite;
     }
 
-    @keyframes gradientBG {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
+    /* Particle Background */
+    canvas#bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
 
     .container {
-      text-align: center;
-      max-width: 400px;
+      max-width: 420px;
       padding: 30px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(20, 20, 20, 0.7);
       border-radius: 20px;
       backdrop-filter: blur(10px);
-      box-shadow: 0 0 25px rgba(247, 181, 0, 0.3);
+      text-align: center;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
       animation: fadeIn 1s ease-in-out;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
     .header {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 20px;
       gap: 10px;
+      margin-bottom: 20px;
     }
 
     .header img {
       width: 60px;
       border-radius: 50%;
-      border: 2px solid #f7b500;
+      border: 2px solid gold;
     }
 
     .header h1 {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 700;
-      color: #f7b500;
-      text-shadow: 0 0 10px rgba(247, 181, 0, 0.5);
+      background: linear-gradient(90deg, #ffd700, #ffcc33, #fff176, #ffd700);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine {
+      0% {background-position: 0%;}
+      100% {background-position: 200%;}
     }
 
     h2 {
-      font-size: 26px;
-      font-weight: 700;
-      color: #f7b500;
-      margin: 20px 0;
-      text-shadow: 0 0 12px rgba(247, 181, 0, 0.6);
+      color: gold;
+      margin: 15px 0;
+      font-size: 24px;
+      text-shadow: 0 0 12px gold;
     }
 
     p {
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 14px;
       color: #ccc;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .countdown {
+      font-size: 18px;
+      color: #ff6666;
+      margin-bottom: 20px;
     }
 
     .input-container {
-      margin-top: 20px;
       text-align: left;
+      margin-bottom: 20px;
     }
 
     .input-container label {
-      display: block;
-      margin-bottom: 5px;
+      color: #ccc;
       font-weight: 500;
-      color: #aaa;
+      margin-bottom: 5px;
+      display: block;
     }
 
     .input-group {
       display: flex;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
       border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 20px;
+      padding: 10px;
     }
 
     .input-group input {
       flex: 1;
-      border: none;
       background: transparent;
-      color: #fff;
+      border: none;
       outline: none;
-      padding: 5px;
+      color: #fff;
       font-size: 16px;
     }
 
-    input[type="button"] {
+    .btn {
+      display: inline-block;
+      width: 100%;
       padding: 12px;
       margin: 10px 0;
       border: none;
       border-radius: 8px;
-      cursor: pointer;
       font-size: 16px;
       font-weight: bold;
-      width: 100%;
+      cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .submit-btn {
-      background-color: #f7b500;
+      background: gold;
       color: #000;
-      box-shadow: 0 0 10px rgba(247, 181, 0, 0.4);
+      box-shadow: 0 0 15px rgba(255,215,0,0.5);
     }
 
     .submit-btn:hover {
-      background-color: #ffcc33;
       transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(247, 181, 0, 0.7);
+      box-shadow: 0 0 30px rgba(255,215,0,0.8);
     }
 
     .verify-btn {
-      background-color: #6da800;
+      background: #6da800;
       color: #fff;
-      box-shadow: 0 0 10px rgba(109, 168, 0, 0.4);
+      box-shadow: 0 0 15px rgba(109,168,0,0.5);
     }
 
     .verify-btn:hover {
-      background-color: #7cd91c;
       transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(124, 217, 28, 0.7);
+      box-shadow: 0 0 30px rgba(124,217,28,0.8);
     }
 
     h3 {
-      color: #f7b500;
+      color: gold;
       margin-top: 20px;
     }
 
@@ -174,60 +171,63 @@
     }
 
     li {
-      color: #ccc;
-      text-align: left;
       margin: 5px 0;
-      position: relative;
       padding-left: 20px;
+      color: #ccc;
+      position: relative;
     }
 
     li::before {
       content: "✔";
       position: absolute;
       left: 0;
-      color: #f7b500;
+      color: gold;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: none;
+      animation: fade 2s ease-in-out;
+    }
+
+    @keyframes fade {
+      0% {opacity: 0;}
+      20% {opacity: 1;}
+      80% {opacity: 1;}
+      100% {opacity: 0;}
     }
   </style>
 </head>
-
 <body>
+  <canvas id="bg"></canvas>
   <div class="container">
     <div class="header">
-      <img
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4SLEHVYaXUtJTcldHUlojtAlY8TFMlUjgFOqALQHyoOPFLDBNkIpqELBJDKSEUdcjuCwJSeKcGZuffxKPLIUy3PvQDr-kqE6OYz3c0_hchcq0vHYiLtEsuO2qB68uDypgdwyJtDrEoqmQt90HZAQoEy-iesLom4KMK5pzt_4N-lma94xog5HxQbX4L5zk/s1600/1000074786.jpg"
-        alt="Logo">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4SLEHVYaXUtJTcldHUlojtAlY8TFMlUjgFOqALQHyoOPFLDBNkIpqELBJDKSEUdcjuCwJSeKcGZuffxKPLIUy3PvQDr-kqE6OYz3c0_hchcq0vHYiLtEsuO2qB68uDypgdwyJtDrEoqmQt90HZAQoEy-iesLom4KMK5pzt_4N-lma94xog5HxQbX4L5zk/s1600/1000074786.jpg" alt="Logo">
       <h1>BIG WINNER</h1>
     </div>
-
     <h2>Get ₹5 Cashback</h2>
-    <p><strong>Important!</strong><br>Complete this Offer Carefully. Don’t USE WIFI.<br>Offer Reward will Only be
-      Tracked with Mobile Internet and You must be New User in the Partner Website App.</p>
-
+    <p><strong>Important!</strong> Complete this Offer Carefully. Don’t use WIFI. Offer Reward will only be tracked with Mobile Internet and you must be a New User in the Partner Website App.</p>
+    <div class="countdown">Offer ends in: <span id="timer">03:00</span></div>
     <div class="input-container">
       <label for="upi">VPA UPI</label>
       <div class="input-group">
-        <input type="text" id="upi" placeholder="Enter UPI ID" required>
+        <input type="text" id="upi" value="yourupi@bank" readonly onclick="copyUPI()">
       </div>
     </div>
-
-    <!-- Submit Button -->
-    <a href="https://youtu.be/aWCbIHqoT7M?si=4qTZphxiUlGpc44Z" target="_blank">
-      <input type="button" class="submit-btn" value="SUBMIT" />
-    </a>
-
-    <!-- Verify Button -->
-    <a href="https://youtu.be/1vZxMV2IzAE?si=lv-fCN7mrxqvFsOr" target="_blank">
-      <input type="button" class="verify-btn" value="Verify After Done" />
-    </a>
-
-    <hr style="border: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
-
-    <h3>Steps To Avail Offer:</h3>
+    <button class="btn submit-btn" onclick="window.open('https://youtu.be/aWCbIHqoT7M?si=4qTZphxiUlGpc44Z','_blank')">SUBMIT</button>
+    <button class="btn verify-btn" onclick="window.open('https://youtu.be/1vZxMV2IzAE?si=lv-fCN7mrxqvFsOr','_blank')">VERIFY AFTER DONE</button>
+    <h3>Steps to Avail Offer:</h3>
     <ul>
       <li>Install Open App</li>
-      <li>Register With OTP & Wait for 2 min</li>
+      <li>Register with OTP & wait 2 min</li>
     </ul>
-
     <h3>Terms & Conditions:</h3>
     <ul>
       <li>Payment Type: UPI</li>
@@ -235,6 +235,66 @@
       <li>One UPI One Time Only</li>
     </ul>
   </div>
-</body>
+  <div class="toast" id="toast">UPI ID Copied!</div>
 
+  <script>
+    // Countdown Timer (3 minutes)
+    let time = 180;
+    const timer = document.getElementById('timer');
+    setInterval(() => {
+      let minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      timer.textContent = `${minutes}:${seconds}`;
+      if (time > 0) time--;
+    }, 1000);
+
+    // Copy UPI
+    function copyUPI() {
+      const upi = document.getElementById('upi');
+      navigator.clipboard.writeText(upi.value);
+      const toast = document.getElementById('toast');
+      toast.style.display = 'block';
+      setTimeout(() => toast.style.display = 'none', 2000);
+    }
+
+    // Particle Background
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5
+      });
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,215,0,0.5)';
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
 </html>
