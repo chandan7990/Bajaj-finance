@@ -2,244 +2,239 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bajaj Security</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" sizes="32x32"
-        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4SLEHVYaXUtJTcldHUlojtAlY8TFMlUjgFOqALQHyoOPFLDBNkIpqELBJDKSEUdcjuCwJSeKcGZuffxKPLIUy3PvQDr-kqE6OYz3c0_hchcq0vHYiLtEsuO2qB68uDypgdwyJtDrEoqmQt90HZAQoEy-iesLom4KMK5pzt_4N-lma94xog5HxQbX4L5zk/s1600/1000074786.jpg">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bajaj Security</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" sizes="32x32"
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4SLEHVYaXUtJTcldHUlojtAlY8TFMlUjgFOqALQHyoOPFLDBNkIpqELBJDKSEUdcjuCwJSeKcGZuffxKPLIUy3PvQDr-kqE6OYz3c0_hchcq0vHYiLtEsuO2qB68uDypgdwyJtDrEoqmQt90HZAQoEy-iesLom4KMK5pzt_4N-lma94xog5HxQbX4L5zk/s1600/1000074786.jpg">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1c1c1c, #2a2a2a);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+    }
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #000000; /* Black background */
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+      50% {
+        background-position: 100% 50%;
+      }
 
-        .container {
-            text-align: center;
-            max-width: 400px;
-            padding: 20px;
-        }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
 
-        .header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            position: absolute;
-            top: 20px;
-        }
+    .container {
+      text-align: center;
+      max-width: 400px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(247, 181, 0, 0.3);
+      animation: fadeIn 1s ease-in-out;
+    }
 
-        .header img {
-            width: 50px;
-            margin-right: 10px;
-            border-radius: 50%;
-        }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-        .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 0;
-            color: #ffffff;
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        h2 {
-            font-size: 22px;
-            font-weight: 700;
-            color: #f7b500;
-            margin: 65px 0;
-        }
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 10px;
+    }
 
-        h3 {
-            color: #f7b500;
-        }
+    .header img {
+      width: 60px;
+      border-radius: 50%;
+      border: 2px solid #f7b500;
+    }
 
-        p {
-            font-size: 14px;
-            line-height: 1.5;
-            color: #ccc;
-        }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #f7b500;
+      text-shadow: 0 0 10px rgba(247, 181, 0, 0.5);
+    }
 
-        .input-container {
-            margin-top: 20px;
-            text-align: left;
-        }
+    h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #f7b500;
+      margin: 20px 0;
+      text-shadow: 0 0 12px rgba(247, 181, 0, 0.6);
+    }
 
-        .input-container label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: #ccc;
-        }
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #ccc;
+    }
 
-        .input-group {
-            display: flex;
-            align-items: center;
-            background-color: #222;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
+    .input-container {
+      margin-top: 20px;
+      text-align: left;
+    }
 
-        .input-group input {
-            flex: 1;
-            border: none;
-            background: transparent;
-            color: #fff;
-            outline: none;
-            padding: 5px;
-            font-size: 16px;
-        }
+    .input-container label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #aaa;
+    }
 
-        .btn {
-            background-color: #84b922;
-            color: #fff;
-            border: none;
-            padding: 12px 0;
-            font-size: 16px;
-            font-weight: 700;
-            width: 100%;
-            border-radius: 9px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+    .input-group {
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 20px;
+    }
 
-        .btn:hover {
-            background-color: #68c62a;
-            color: #1b90bb;
-        }
+    .input-group input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: #fff;
+      outline: none;
+      padding: 5px;
+      font-size: 16px;
+    }
 
-        .btn-secondary {
-            background-color: #6da800;
-        }
+    input[type="button"] {
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
 
-        .text-left {
-            text-align: left;
-        }
+    .submit-btn {
+      background-color: #f7b500;
+      color: #000;
+      box-shadow: 0 0 10px rgba(247, 181, 0, 0.4);
+    }
 
-        #statusMessage {
-            color: red;
-            margin-top: 10px;
-        }
+    .submit-btn:hover {
+      background-color: #ffcc33;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(247, 181, 0, 0.7);
+    }
 
-        #toast {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 5px;
-            padding: 16px;
-            position: fixed;
-            left: 50%;
-            bottom: 30px;
-            opacity: 0;
-            transition: 0.5s;
-        }
+    .verify-btn {
+      background-color: #6da800;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(109, 168, 0, 0.4);
+    }
 
-        #toast.show {
-            visibility: visible;
-            opacity: 1;
-            bottom: 50px;
-        }
+    .verify-btn:hover {
+      background-color: #7cd91c;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(124, 217, 28, 0.7);
+    }
 
-        #toast.success {
-            background: #28a745;
-        }
+    h3 {
+      color: #f7b500;
+      margin-top: 20px;
+    }
 
-        #toast.error {
-            background: #dc3545;
-        }
-    </style>
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      color: #ccc;
+      text-align: left;
+      margin: 5px 0;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #f7b500;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="https://i.ibb.co/dwhfBP8C/IMG-20250605-WA0001.jpg" alt="Logo">
-            <h1>BIG WINNER</h1>
-        </div>
-        <h2>Get ₹5 Cashback</h2>
-        <p>Important! <br> Complete this Offer Carefully, Don’t USE WIFI, Offer Reward will Only be Tracked with Mobile Internet and You must be New User in the Partner Website App.</p>
-
-        <div class="input-container">
-            <label for="upi">VPA UPI</label>
-            <div class="input-group">
-                <input type="email" id="user" placeholder="Enter UPI ID" required>
-            </div>
-        </div>
-
-        <button id="submitButton" class="btn">SUBMIT</button>
-        <button id="verifyButton" class="btn btn-secondary">VERIFY AFTER DONE</button>
-        <p id="statusMessage"></p>
+  <div class="container">
+    <div class="header">
+      <img
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4SLEHVYaXUtJTcldHUlojtAlY8TFMlUjgFOqALQHyoOPFLDBNkIpqELBJDKSEUdcjuCwJSeKcGZuffxKPLIUy3PvQDr-kqE6OYz3c0_hchcq0vHYiLtEsuO2qB68uDypgdwyJtDrEoqmQt90HZAQoEy-iesLom4KMK5pzt_4N-lma94xog5HxQbX4L5zk/s1600/1000074786.jpg"
+        alt="Logo">
+      <h1>BIG WINNER</h1>
     </div>
 
-    <div id="toast"></div>
+    <h2>Get ₹5 Cashback</h2>
+    <p><strong>Important!</strong><br>Complete this Offer Carefully. Don’t USE WIFI.<br>Offer Reward will Only be
+      Tracked with Mobile Internet and You must be New User in the Partner Website App.</p>
 
-    <script>
-        // Firebase Config
-        const firebaseConfig = {
-            apiKey: "AIzaSyCZ58FEwAJnZnJpvDXruTyjdjxvmer7nB0",
-            authDomain: "app-test-3a56b.firebaseapp.com",
-            databaseURL: "https://app-test-3a56b-default-rtdb.firebaseio.com",
-            projectId: "app-test-3a56b",
-            storageBucket: "app-test-3a56b.appspot.com",
-            messagingSenderId: "317203215015",
-            appId: "1:317203215015:web:22ea37ff8acbdc63a3e182"
-        };
+    <div class="input-container">
+      <label for="upi">VPA UPI</label>
+      <div class="input-group">
+        <input type="text" id="upi" placeholder="Enter UPI ID" required>
+      </div>
+    </div>
 
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
+    <!-- Submit Button -->
+    <a href="https://youtu.be/aWCbIHqoT7M?si=4qTZphxiUlGpc44Z" target="_blank">
+      <input type="button" class="submit-btn" value="SUBMIT" />
+    </a>
 
-        function showToast(message, type) {
-            const toast = document.getElementById("toast");
-            toast.textContent = message;
-            toast.className = `show ${type}`;
-            setTimeout(() => toast.className = toast.className.replace("show", ""), 3000);
-        }
+    <!-- Verify Button -->
+    <a href="https://youtu.be/1vZxMV2IzAE?si=lv-fCN7mrxqvFsOr" target="_blank">
+      <input type="button" class="verify-btn" value="Verify After Done" />
+    </a>
 
-        // SUBMIT -> Save to Firebase
-        $("#submitButton").click(function (event) {
-            event.preventDefault();
-            let user = $("#user").val().trim();
+    <hr style="border: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
 
-            if (user === "") {
-                showToast("Please enter your UPI ID.", "error");
-                return;
-            }
+    <h3>Steps To Avail Offer:</h3>
+    <ul>
+      <li>Install Open App</li>
+      <li>Register With OTP & Wait for 2 min</li>
+    </ul>
 
-            const newEntry = db.ref("users").push();
-            newEntry.set({
-                upi: user,
-                timestamp: new Date().toISOString()
-            })
-                .then(() => {
-                    showToast("UPI ID Saved! Cashback will be processed.", "success");
-                    $("#user").val("");
-                })
-                .catch(() => {
-                    showToast("Error saving data.", "error");
-                });
-        });
-
-        // VERIFY -> Redirect to Facebook
-        $("#verifyButton").click(function () {
-            window.location.href = "https://www.facebook.com";
-        });
-    </script>
+    <h3>Terms & Conditions:</h3>
+    <ul>
+      <li>Payment Type: UPI</li>
+      <li>Payment Time: 24 Hours</li>
+      <li>One UPI One Time Only</li>
+    </ul>
+  </div>
 </body>
 
 </html>
